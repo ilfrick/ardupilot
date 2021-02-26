@@ -97,8 +97,8 @@ static void read_radio()
         ap_system.new_radio_frame = true;
         uint16_t periods[8];
         hal.rcin->read(periods,8);
-        g.rc_1.set_pwm(cmnds.rollcmd);
-        g.rc_2.set_pwm(cmnds.yawcmd);
+        g.rc_1.set_pwm(periods[0]);
+        g.rc_2.set_pwm(periods[1]);
         g.rc_3.set_pwm(periods[2]);
         g.rc_4.set_pwm(periods[3]);
         g.rc_5.set_pwm(periods[4]);

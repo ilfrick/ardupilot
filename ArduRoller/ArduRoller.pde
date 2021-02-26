@@ -642,6 +642,11 @@ static struct {
 	float speed;
 } wheel;
 
+static struct {
+	int16_t rollcmd;
+	int16_t yawcmd;
+} cmnds;
+
 // I2C Receive buffer
 static union {
     int32_t long_value;

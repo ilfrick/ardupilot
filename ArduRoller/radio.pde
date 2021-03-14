@@ -107,6 +107,8 @@ static void read_radio()
         g.rc_8.set_pwm(periods[7]);
 
     }
+	g.rc_1.set_pwm(cmnds.rollcmd);
+	g.rc_2.set_pwm(cmnds.yawcmd);
 }
 
 

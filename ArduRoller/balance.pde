@@ -73,10 +73,10 @@ static bool update_wheel_encoders()
 	// convert wheel.speed to 1 rotation per second = 1000 ticks
 	float tmp 	= ((float)(wheel.left_speed + wheel.right_speed) * wheel_ratio);
 	
-	memcpy(bytes_union.bytes, &buff[13], 2);
+	memcpy(bytes_union.bytes, &buff[12], 2);
 	cmnds.rollcmd = bytes_union.int_value;
 	
-	memcpy(bytes_union.bytes, &buff[15], 2);
+	memcpy(bytes_union.bytes, &buff[14], 2);
 	cmnds.yawcmd = bytes_union.int_value;
 
 	// divide tmp speeds by number of wheels

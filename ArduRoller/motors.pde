@@ -52,7 +52,7 @@ update_servos()
 		return;
 	}
 
-    uint8_t dir_left, dir_right;
+    uint8_t dir_left, dir_left_c, dir_right, dir_right_c;
 
     motor_out[LEFT_MOT_CH]  = (float)(pitch_out_left + yaw_out)  * g.pid_nav_left.kP(); // left motor
     motor_out[RIGHT_MOT_CH] = (float)(pitch_out_right - yaw_out) * g.pid_nav_right.kP(); // righ motor
@@ -74,9 +74,13 @@ update_servos()
 	}
 
     dir_left 	= (motor_out[LEFT_MOT_CH]  < 0) ? LOW : HIGH;	// reverse : forward
+	dir_left_c 	= (motor_out[LEFT_MOT_CH]  < 0) ? HIGH : LOW;	// reverse : forward
     dir_right 	= (motor_out[RIGHT_MOT_CH] < 0) ? HIGH : LOW;	// reverse : forward
+	dir_right_c 	= (motor_out[RIGHT_MOT_CH] < 0) ? LOW : HIGH;	// reverse : forward
     hal.gpio->write(LEFT_DIR, dir_left);
+	hal.gpio->write(LEFT_DIR_C, dir_left_c);
     hal.gpio->write(RIGHT_DIR, dir_right);
+	hal.gpio->write(RIGHT_DIR_C, dir_right_c);
 
     /*cliSerial->printf_P(PSTR("p:%d, y:%d, l:%d r:%d, %d, %d\n"),
     	pitch_out,
@@ -93,7 +97,7 @@ update_servos()
 static void
 set_servos_direct(int16_t pwm)
 {
-    uint8_t dir_left, dir_right;
+    uint8_t dir_left, dir_left_c, dir_right, dir_right_c;
 
     motor_out[0] = pwm;
     motor_out[1] = pwm;
@@ -102,8 +106,12 @@ set_servos_direct(int16_t pwm)
 	hal.rcout->write(CH_2, abs(motor_out[RIGHT_MOT_CH])); // right motor
 
     dir_left 	= (motor_out[LEFT_MOT_CH]  < 0) ? LOW : HIGH;	// reverse : forward
+	dir_left_c 	= (motor_out[LEFT_MOT_CH]  < 0) ? HIGH : LOW;	// reverse : forward
     dir_right 	= (motor_out[RIGHT_MOT_CH] < 0) ? HIGH : LOW;	// reverse : forward
+	dir_right_c 	= (motor_out[RIGHT_MOT_CH] < 0) ? LOW : HIGH;	// reverse : forward
     hal.gpio->write(LEFT_DIR, dir_left);
+	hal.gpio->write(LEFT_DIR_C, dir_left_c);
     hal.gpio->write(RIGHT_DIR, dir_right);
+	hal.gpio->write(RIGHT_DIR_C, dir_right_c);
 }
 

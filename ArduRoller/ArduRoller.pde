@@ -980,27 +980,24 @@ static void fifty_hz_loop()
     // read wheel encoders:
     // -------------------
     if(update_wheel_encoders()){
-        cliSerial->println("OK");
-		sprintf(rcmnd, "Value of Roll cmd = %i", cmnds.rollcmd);
-		sprintf(ycmnd, "Value of Yaw cmd = %i", cmnds.yawcmd);
-		if( cmnds.rollcmd == 1500 ) {
-		gcs_send_text_P(SEVERITY_CRITICAL, PSTR("Value of Roll cmd = 1500"));
-		}
-		if( cmnds.yawcmd == 1500 ) {
-		gcs_send_text_P(SEVERITY_CRITICAL, PSTR("Value of Yaw cmd = 1500"));
-		}
-		if( cmnds.rollcmd == 1100 ) {
-		gcs_send_text_P(SEVERITY_CRITICAL, PSTR("Value of Roll cmd = 1100"));
-		}
-		if( cmnds.yawcmd == 1100 ) {
-		gcs_send_text_P(SEVERITY_CRITICAL, PSTR("Value of Yaw cmd = 1100"));
-		}
-		if( cmnds.rollcmd == 1900 ) {
-		gcs_send_text_P(SEVERITY_CRITICAL, PSTR("Value of Roll cmd = 1900"));
-		}
-		if( cmnds.yawcmd == 1900 ) {
-		gcs_send_text_P(SEVERITY_CRITICAL, PSTR("Value of Yaw cmd = 1900"));
-		}
+//		if( cmnds.rollcmd == 1500 ) {
+//		gcs_send_text_P(SEVERITY_CRITICAL, PSTR("Value of Roll cmd = 1500"));
+//		}
+//		if( cmnds.yawcmd == 1500 ) {
+//		gcs_send_text_P(SEVERITY_CRITICAL, PSTR("Value of Yaw cmd = 1500"));
+//		}
+//		if( cmnds.rollcmd == 1100 ) {
+//		gcs_send_text_P(SEVERITY_CRITICAL, PSTR("Value of Roll cmd = 1100"));
+//		}
+//		if( cmnds.yawcmd == 1100 ) {
+//		gcs_send_text_P(SEVERITY_CRITICAL, PSTR("Value of Yaw cmd = 1100"));
+//		}
+//		if( cmnds.rollcmd == 1900 ) {
+//		gcs_send_text_P(SEVERITY_CRITICAL, PSTR("Value of Roll cmd = 1900"));
+//		}
+//		if( cmnds.yawcmd == 1900 ) {
+//		gcs_send_text_P(SEVERITY_CRITICAL, PSTR("Value of Yaw cmd = 1900"));
+//		}
     }else{
         cliSerial->printf("E %d\n", I2Cfail);
 		gcs_send_text_P(SEVERITY_CRITICAL, PSTR("I2Cfail!"));
